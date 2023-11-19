@@ -5,7 +5,11 @@ from nats import errors
 from ..utils.message_router import message_router
 from ..jobs import create_tenant_job, delete_tenant_job
 
-@sensor(default_status=DefaultSensorStatus.RUNNING,jobs=[create_tenant_job,delete_tenant_job])
+
+@sensor(
+    default_status=DefaultSensorStatus.RUNNING,
+    jobs=[create_tenant_job, delete_tenant_job],
+)
 def nats_sensor(context):
     async def nats_sensor_async():
         nc = await nats.connect("nats://localhost:4222")
@@ -13,7 +17,7 @@ def nats_sensor(context):
         sub = await js.pull_subscribe("tenants", "MY_STREAM")
 
         try:
-            messages = await sub.fetch(batch=1,timeout=5)
+            messages = await sub.fetch(batch=1, timeout=5)
             if messages:
                 message = messages[0]
                 await message.ack()
@@ -23,4 +27,5 @@ def nats_sensor(context):
             return SkipReason("Did not receive a message in 5 seconds")
         finally:
             await nc.close()
+
     return asyncio.run(nats_sensor_async())
