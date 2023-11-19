@@ -1,0 +1,30 @@
+# Ignore Python virtual environment files
+venv/
+env/
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore system and temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Ignore logs and output files
+logs/
+output/
+
+# Ignore sensitive or private information
+secrets.ini
+config.ini
+
+# Dagster
+tmp*/

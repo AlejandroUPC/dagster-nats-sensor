@@ -1,0 +1,22 @@
+[tool.poetry]
+authors = ["Alejandro Martinez <amartinezotal@gmail.com>"]
+description = "A small POC to test Dagster reacting to NATS to trigger RunRequests."
+name = "dagster-nats-sensor"
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+dagster = "^1.5.9"
+nats-py = "^2.6.0"
+python = "^3.9"
+dagster-webserver = "^1.5.9"
+requests = "^2.31.0"
+urllib3 = "1.26.15"
+requests-toolbelt = "0.10.1"
+
+[tool.dagster]
+module_name = "dagster_nats_sensor"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
