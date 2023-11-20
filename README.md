@@ -55,7 +55,11 @@ To run this project, follow these steps
 ```
 2. Start a simple debug session on vs code.
 3. Access to your dagster environment on http://localhost:3000, check the sensors section.
-4. Trigger messages on NATS, you can use the following command as example:
+4. Create and config (important, subject must be tenants) the stream tenants:
+```sh
+nats stream create tenants
+```
+5. Trigger messages on NATS, you can use the following command as example:
 ```sh
 nats pub tenants "{\"action\":\"CREATE\",\"tenant_name\":\"tenant_1\",\"configuration\":{\"config_value\":\"1\"}}"
 ```
