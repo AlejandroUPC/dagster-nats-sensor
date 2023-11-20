@@ -24,5 +24,5 @@ def message_router(nats_message: str) -> RunRequest:
         )
     except KeyError:
         raise ValueError(
-            f"The action field in the NATS message payload is not valid {nats_message['action']}, should be in {', '.join(NATS_REQUEST_TO_JOB_MAP.keys())}"
+            f"The action field in the NATS message payload is not valid {serialized_message['action']}, should be in {', '.join(NATS_REQUEST_TO_JOB_MAP.keys())}"
         )
