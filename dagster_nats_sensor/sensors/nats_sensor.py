@@ -14,7 +14,9 @@ def nats_sensor(context):
     async def nats_sensor_async():
         nc = await nats.connect("nats://localhost:4222")
         js = nc.jetstream()
-        sub = await js.pull_subscribe("tenants", "MY_STREAM")
+        sub = await js.pull_subscribe(
+            subject="tenants", stream="tenants", durable="tenants_consumer"
+        )
 
         try:
             messages = await sub.fetch(batch=1, timeout=5)
